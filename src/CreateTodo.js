@@ -19,7 +19,7 @@ class CreateTodo extends ActionWithFile {
             throw "Please set 'body'";
         }
 
-        if (this.contentInFile().includes(this.title)) {
+        if (this.readFile().includes(this.title)) {
             throw `Todo with name: '${this.title}' has already done`;
         }
 

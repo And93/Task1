@@ -10,12 +10,12 @@ class ActionWithFile {
         this.body = yargs.argv.body;
     };
 
-    contentInFile() {
+    readFile() {
         return this.errorHandler(fs.readFileSync(pathToFile, "utf8"));
     };
 
     parseredFile() {
-        return JSON.parse(this.contentInFile());
+        return JSON.parse(this.readFile());
     }
 
     writeToFile(content) {
