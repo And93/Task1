@@ -1,14 +1,13 @@
-const fs = require("fs");
-const yargs = require("yargs");
+const ActionWithFile = require("./ActionWithFile");
 
 /**
- * If you want find todo, use please: node ./src/ReadOneTodo.js --title=${title}
+ * If you want find todo, use please: npm run read -- --title=${title}
  */
 
-class ReadOneTodo {
+class ReadOneTodo extends ActionWithFile {
 
     constructor() {
-        this.title = yargs.argv.title;
+        super();
         this.readOneTodo();
     }
 
@@ -16,19 +15,13 @@ class ReadOneTodo {
 
         if (typeof this.title === "undefined") {
             throw "Please set 'title'";
-        };
+        }
 
-        const pathToFile = "./data/todoList.json"
-        const file = fs.readFileSync(pathToFile, "utf8");
-        
-        let obj = [];
+        const obj = this.parseredFile();
         let isDoneSearch = false;
 
-        obj = JSON.parse(file);
-
-
         for (const todo of obj) {
-            for(const item in todo) {
+            for (const item in todo) {
                 if (todo[item] === this.title) {
                     console.log("title:", todo["title"]);
                     console.log("body:", todo["body"]);

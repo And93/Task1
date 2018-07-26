@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "viewAllTodo" : "node ./src/ViewAllTodo.js"
+    "create": "node ./src/CreateTodo.js",
+    "read": "node ./src/ReadOneTodo.js",
+    "viewAll": "node ./src/ViewAllTodo.js",
+    "delete": "node ./src/DeleteTodo.js"
   },
   "author": "Andrei Dzeichyk",
   "license": "ISC",

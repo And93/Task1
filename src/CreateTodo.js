@@ -1,15 +1,13 @@
-const fs = require("fs");
-const yargs = require("yargs");
+const ActionWithFile = require("./ActionWithFile");
 
 /**
- * If you want create todo, use please: node ./src/CreateTodo.js --title=${title} --body=${body}
+ * If you want create todo, use please: npm run create -- --title=${title} --body=${body}
  */
 
-class CreateTodo {
+class CreateTodo extends ActionWithFile {
 
     constructor() {
-        this.title = yargs.argv.title;
-        this.body = yargs.argv.body;
+        super();
         this.createNewTodo();
     }
 
@@ -21,24 +19,13 @@ class CreateTodo {
             throw "Please set 'body'";
         }
 
-        const pathToFile = "./data/todoList.json"
-        const file = fs.readFileSync(pathToFile, "utf8");
-        let obj = [];
-        let json;
-
-        if (file.includes(this.title)) {
+        if (this.contentInFile().includes(this.title)) {
             throw `Todo with name: '${this.title}' has already done`;
         }
 
-        obj = JSON.parse(file);
+        let obj = this.parseredFile();
         obj.push({title: this.title, body: this.body});
-        json = JSON.stringify(obj);
-
-        try {        
-            fs.writeFileSync(pathToFile, json, "utf8");
-        } catch (err) {
-            throw err;
-        };
+        this.writeToFile(JSON.stringify(obj))
     };
 }
 

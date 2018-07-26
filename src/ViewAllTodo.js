@@ -1,24 +1,18 @@
-const fs = require("fs");
+const ActionWithFile = require("./ActionWithFile");
 
 /**
  * If you want look all todo, use please: npm run viewAllTodo
  */
 
-class ViewAllTodo {
+class ViewAllTodo extends ActionWithFile {
 
     constructor() {
+        super();
         this.listOfAllTodo();
     }
 
     listOfAllTodo() {
-
-        const pathToFile = "./data/todoList.json"
-        const file = fs.readFileSync(pathToFile, "utf8");
-        let obj = [];
-
-        obj = JSON.parse(file);
-
-        for(const todo of obj) {
+        for (const todo of this.parseredFile()) {
             console.log("title:", todo["title"]);
             console.log("body:", todo["body"], "\n");
         }

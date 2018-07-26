@@ -1,14 +1,13 @@
-const fs = require("fs");
-const yargs = require("yargs");
+const ActionWithFile = require("./ActionWithFile");
 
 /**
- * If you want delete todo, use please: node ./src/DeleteTodo.js --title=${title}
+ * If you want delete todo, use please: npm run delete -- --title=${title}
  */
 
-class DeleteTodo {
+class DeleteTodo extends ActionWithFile {
 
     constructor() {
-        this.title = yargs.argv.title;
+        super();
         this.deleteTodo();
     }
 
@@ -16,30 +15,16 @@ class DeleteTodo {
 
         if (typeof this.title === "undefined") {
             throw "Please set 'title'";
-        };
+        }
 
-        const pathToFile = "./data/todoList.json"
-        const file = fs.readFileSync(pathToFile, "utf8");
-        
-        let obj = [];
-        let json;
         let isDoneDelete = false;
-
-        obj = JSON.parse(file);
-
+        let obj = this.parseredFile();
 
         for (const todo of obj) {
-            for(const item in todo) {
+            for (const item in todo) {
                 if (todo[item] === this.title) {
-                    obj.splice(obj.indexOf(todo));
-                    json = JSON.stringify(obj);
-
-                    try {        
-                        fs.writeFileSync(pathToFile, json, "utf8");
-                    } catch (err) {
-                        throw err;
-                    };
-                    
+                    obj.splice(obj.indexOf(todo), 1);
+                    this.writeToFile(JSON.stringify(obj));
                     isDoneDelete = true;
                     break;
                 }
@@ -50,7 +35,6 @@ class DeleteTodo {
             throw "No match found"
         }
     };
-
 }
 
 const deleteTodo = new DeleteTodo();
