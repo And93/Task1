@@ -11,7 +11,7 @@ class ActionWithFile {
     };
 
     contentInFile() {
-        return fs.readFileSync(pathToFile, "utf8");
+        return this.errorHandler(fs.readFileSync(pathToFile, "utf8"));
     };
 
     parseredFile() {
@@ -19,8 +19,12 @@ class ActionWithFile {
     }
 
     writeToFile(content) {
+        return this.errorHandler(fs.writeFileSync(pathToFile, content, "utf8"));
+    };
+
+    errorHandler(func) {
         try {
-            fs.writeFileSync(pathToFile, content, "utf8");
+            return func;
         } catch (err) {
             throw err;
         }
