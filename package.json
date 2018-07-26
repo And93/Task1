@@ -1,0 +1,15 @@
+{
+  "name": "task1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "viewAllTodo" : "node ./src/ViewAllTodo.js"
+  },
+  "author": "Andrei Dzeichyk",
+  "license": "ISC",
+  "dependencies": {
+    "yargs": "12.0.1"
+  }
+}
