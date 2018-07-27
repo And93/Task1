@@ -1,7 +1,7 @@
 const ActionWithFile = require("./ActionWithFile");
 
 /**
- * If you want create todo, use please: npm run create -- --title=${title} --body=${body}
+ * If you want to create todo, please use: npm run create -- --title="title" --body="body"
  */
 
 class CreateTodo extends ActionWithFile {
@@ -14,18 +14,20 @@ class CreateTodo extends ActionWithFile {
     createNewTodo() {
 
         if (typeof this.title === "undefined") {
-            throw "Please set 'title'";
+            throw "Please set 'title'.";
         } else if (typeof this.body === "undefined") {
-            throw "Please set 'body'";
+            throw "Please set 'body'.";
         }
 
         if (this.readFile().includes(this.title)) {
-            throw `Todo with name: '${this.title}' has already done`;
+            throw `Todo with name: '${this.title}' has already done.`;
         }
 
-        let obj = this.parseredFile();
+        const obj = this.parseredFile();
+
         obj.push({title: this.title, body: this.body});
-        this.writeToFile(JSON.stringify(obj))
+        this.writeToFile(JSON.stringify(obj));
+        console.log(`The todo with title: '${this.title}' was successfully created.`, "\n");
     };
 }
 

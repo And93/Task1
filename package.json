@@ -4,13 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "create": "node ./src/CreateTodo.js",
     "read": "node ./src/ReadOneTodo.js",
     "viewAll": "node ./src/ViewAllTodo.js",
     "delete": "node ./src/DeleteTodo.js"
   },
   "author": "Andrei Dzeichyk",
+  "require": {
+    "node": ">=8.11.3",
+    "npm": ">=5.6.0"
+  },
   "license": "ISC",
   "dependencies": {
     "yargs": "12.0.1"

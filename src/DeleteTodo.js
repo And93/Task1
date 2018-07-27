@@ -1,7 +1,7 @@
 const ActionWithFile = require("./ActionWithFile");
 
 /**
- * If you want delete todo, use please: npm run delete -- --title=${title}
+ * If you want to delete todo, please use: npm run delete -- --title="title"
  */
 
 class DeleteTodo extends ActionWithFile {
@@ -14,25 +14,26 @@ class DeleteTodo extends ActionWithFile {
     deleteTodo() {
 
         if (typeof this.title === "undefined") {
-            throw "Please set 'title'";
+            throw "Please set 'title'.";
         }
 
         let isDoneDelete = false;
-        let obj = this.parseredFile();
+        const obj = this.parseredFile();
 
-        for (const todo of obj) {
+        obj.map(todo => {
             for (const item in todo) {
-                if (todo[item] === this.title) {
+                if (item === "title" && todo[item] === this.title) {
                     obj.splice(obj.indexOf(todo), 1);
                     this.writeToFile(JSON.stringify(obj));
                     isDoneDelete = true;
+                    console.log(`The todo with title: '${this.title}' was successfully deleted.`, "\n");
                     break;
                 }
             }
-        }
+        });
 
         if (!isDoneDelete) {
-            throw "No match found"
+            throw `Todo with title: '${this.title}' not found.`;
         }
     };
 }
