@@ -17,7 +17,7 @@ class ActionWithFile {
     // Parse json file to object
     parseredFile() {
         return JSON.parse(this.readFile());
-    }
+    };
 
     writeToFile(content) {
         return this.errorHandler(fs.writeFileSync(pathToFile, content, "utf8"));

@@ -6,19 +6,14 @@ const ActionWithFile = require("./ActionWithFile");
 
 class DeleteTodo extends ActionWithFile {
 
-    constructor() {
-        super();
-        this.deleteTodo();
-    }
-
     deleteTodo() {
 
         if (typeof this.title === "undefined") {
             throw "Please set 'title'.";
         }
 
-        let isDoneDelete = false;
         const obj = this.parseredFile();
+        let isDoneDelete = false;
 
         obj.map(todo => {
             for (const item in todo) {
@@ -39,3 +34,5 @@ class DeleteTodo extends ActionWithFile {
 }
 
 const deleteTodo = new DeleteTodo();
+
+deleteTodo.deleteTodo();

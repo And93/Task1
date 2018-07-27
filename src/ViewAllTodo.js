@@ -4,14 +4,9 @@ const ActionWithFile = require("./ActionWithFile");
  * If you want to see everything to do, please use: npm run viewAllTodo
  */
 
-class ViewAllTodo extends ActionWithFile {
+class ListOfAllTodo extends ActionWithFile {
 
-    constructor() {
-        super();
-        this.listOfAllTodo();
-    }
-
-    listOfAllTodo() {
+    viewAllTodo() {
 
         console.log(`Number of active todo is: ${this.parseredFile().length}`, "\n");
 
@@ -26,4 +21,6 @@ class ViewAllTodo extends ActionWithFile {
     };
 }
 
-const viewAllTodo = new ViewAllTodo();
+const listOfAllTodo = new ListOfAllTodo();
+
+listOfAllTodo.viewAllTodo();

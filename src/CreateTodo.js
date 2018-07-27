@@ -6,11 +6,6 @@ const ActionWithFile = require("./ActionWithFile");
 
 class CreateTodo extends ActionWithFile {
 
-    constructor() {
-        super();
-        this.createNewTodo();
-    }
-
     createNewTodo() {
 
         if (typeof this.title === "undefined") {
@@ -32,3 +27,5 @@ class CreateTodo extends ActionWithFile {
 }
 
 const createTodo = new CreateTodo();
+
+createTodo.createNewTodo();

@@ -6,11 +6,6 @@ const ActionWithFile = require("./ActionWithFile");
 
 class ReadOneTodo extends ActionWithFile {
 
-    constructor() {
-        super();
-        this.readOneTodo();
-    }
-
     readOneTodo() {
 
         if (typeof this.title === "undefined") {
@@ -38,3 +33,5 @@ class ReadOneTodo extends ActionWithFile {
 }
 
 const readOneTodo = new ReadOneTodo();
+
+readOneTodo.readOneTodo();
