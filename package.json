@@ -6,7 +6,7 @@
   "scripts": {
     "create": "node ./src/CreateTodo.js",
     "read": "node ./src/ReadOneTodo.js",
-    "viewAll": "node ./src/ViewAllTodo.js",
+    "viewAllTodo": "node ./src/ViewAllTodo.js",
     "delete": "node ./src/DeleteTodo.js"
   },
   "author": "Andrei Dzeichyk",
